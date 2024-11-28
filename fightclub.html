@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fight Club - You Have to Fight</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono&family=Fira+Sans+Condensed:wght@700&display=swap');
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'bebas': ['Bebas Neue', 'cursive'],
+                        'mono': ['Space Mono', 'monospace'],
+                        'fira': ['Fira Sans Condensed', 'sans-serif'],
+                    },
+                }
+            }
+        }
+
+        .glitch-effect {
+            text-shadow: 
+                0.05em 0 0 rgba(255, 0, 0, 0.75),
+                -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+                0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+            animation: glitch 500ms infinite;
+        }
+
+        .image-tilt {
+            transform: perspective(1000px) rotateY(-15deg);
+            transition: transform 0.5s ease;
+        }
+
+        .image-tilt:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .grain-overlay::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75), -0.05em -0.025em 0 rgba(0, 255, 0, 0.75), 0.025em 0.05em 0 rgba(0, 0, 255, 0.75); }
+            14% { text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75), -0.05em -0.025em 0 rgba(0, 255, 0, 0.75), 0.025em 0.05em 0 rgba(0, 0, 255, 0.75); }
+            15% { text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75), 0.025em 0.025em 0 rgba(0, 255, 0, 0.75), -0.05em -0.05em 0 rgba(0, 0, 255, 0.75); }
+            49% { text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75), 0.025em 0.025em 0 rgba(0, 255, 0, 0.75), -0.05em -0.05em 0 rgba(0, 0, 255, 0.75); }
+            50% { text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75), 0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75); }
+            99% { text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75), 0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75); }
+            100% { text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75), -0.025em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em -0.05em 0 rgba(0, 0, 255, 0.75); }
+        }
+    </style>
+</head>
+<body class="bg-black text-white grain-overlay">
+    <header class="fixed w-full z-50 bg-black bg-opacity-90 backdrop-blur-sm">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="font-bebas text-3xl tracking-wider transform hover:scale-105 transition-transform">
+                <span class="glitch-effect">FIGHT CLUB</span>
+            </h1>
+            <button class="lg:hidden text-yellow-300 hover:text-yellow-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+            <ul class="hidden lg:flex space-x-8 font-mono text-sm">
+                <li><a href="#rules" class="hover:text-yellow-300 transition-colors">RULES</a></li>
+                <li><a href="#cast" class="hover:text-yellow-300 transition-colors">CAST</a></li>
+                <li><a href="#watch" class="hover:text-yellow-300 transition-colors">WATCH</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="pt-20">
+        <section class="min-h-screen flex items-center text-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-[url('/placeholder.svg?height=1080&width=1920')] bg-cover bg-center opacity-20"></div>
+            <div class="container mx-auto px-4 py-20 relative z-10">
+                <h2 class="font-bebas text-6xl md:text-8xl text-yellow-300 mb-6 glitch-effect leading-none">
+                    THE FIRST RULE OF<br>FIGHT CLUB IS
+                </h2>
+                <p class="font-mono text-xl md:text-2xl text-gray-400 mb-8  ">
+                    YOU DO NOT TALK ABOUT FIGHT CLUB
+                </p>
+                <a href="#join" class="inline-block bg-yellow-300 text-black font-fira px-8 py-3 hover:bg-yellow-400 transition-colors transform hover:scale-105">
+                    BREAK THE RULES
+                </a>
+            </div>
+        </section>
+        <section id="cast" class="py-20 bg-zinc-900">
+            <div class="container mx-auto px-4">
+                <h3 class="font-bebas text-4xl mb-12 text-yellow-300">THE PLAYERS</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="group relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
+                        <img src="https://bamfstyle.com/wp-content/uploads/2016/05/fctyler-main.jpg" alt="Tyler Durden" class="w-full h-[500px] object-cover image-tilt filter brightness-75 group-hover:brightness-100 transition-all duration-500">
+                        <div class="absolute bottom-0 left-0 p-6 z-20">
+                            <h4 class="font-bebas text-2xl mb-2">TYLER DURDEN</h4>
+                            <p class="font-mono text-sm text-gray-400">The Other Half</p>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
+                        <img src="https://images.squarespace-cdn.com/content/v1/5233347fe4b00c95cda9e5d6/1411855836796-C3C38H7EHGVUIO3SV4C8/image-asset.jpeg" alt="The Narrator" class="w-full h-[500px] object-cover image-tilt filter brightness-75 group-hover:brightness-100 transition-all duration-500">
+                        <div class="absolute bottom-0 left-0 p-6 z-20">
+                            <h4 class="font-bebas text-2xl mb-2">THE NARRATOR</h4>
+                            <p class="font-mono text-sm text-gray-400">The Insomniac</p>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwKswe1uor3qnfoDNSPnIt4YrDNJWba_-Xsw&s" alt="Marla Singer" class="w-full h-[500px] object-cover image-tilt filter brightness-75 group-hover:brightness-100 transition-all duration-500">
+                        <div class="absolute bottom-0 left-0 p-6 z-20">
+                            <h4 class="font-bebas text-2xl mb-2">MARLA SINGER</h4>
+                            <p class="font-mono text-sm text-gray-400">The Tourist</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="rules" class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="space-y-8">
+                        <div class="border-l-4 border-yellow-300 pl-4">
+                            <h4 class="font-bebas text-2xl mb-2 text-yellow-300">RULE ONE</h4>
+                            <p class="font-mono text-gray-400">YOU DO NOT TALK ABOUT FIGHT CLUB</p>
+                        </div>
+                        <div class="border-l-4 border-yellow-300 pl-4">
+                            <h4 class="font-bebas text-2xl mb-2 text-yellow-300">RULE TWO</h4>
+                            <p class="font-mono text-gray-400">YOU DO NOT TALK ABOUT FIGHT CLUB</p>
+                        </div>
+                        <div class="border-l-4 border-yellow-300 pl-4">
+                            <h4 class="font-bebas text-2xl mb-2 text-yellow-300">RULE THREE</h4>
+                            <p class="font-mono text-gray-400">SOMEONE YELLS STOP, GOES LIMP, TAPS OUT, THE FIGHT IS OVER</p>
+                        </div>
+                    </div>
+                    <div class="space-y-8">
+                        <div class="border-l-4 border-yellow-300 pl-4">
+                            <h4 class="font-bebas text-2xl mb-2 text-yellow-300">RULE FOUR</h4>
+                            <p class="font-mono text-gray-400">ONLY TWO GUYS TO A FIGHT</p>
+                        </div>
+                        <div class="border-l-4 border-yellow-300 pl-4">
+                            <h4 class="font-bebas text-2xl mb-2 text-yellow-300">RULE FIVE</h4>
+                            <p class="font-mono text-gray-400">ONE FIGHT AT A TIME</p>
+                        </div>
+                        <div class="border-l-4 border-yellow-300 pl-4 glitch-effect">
+                            <h4 class="font-bebas text-2xl mb-2 text-yellow-300">RULE SIX</h4>
+                            <p class="font-mono text-gray-400">NO SHIRTS, NO SHOES</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+  
+        <section id="watch" class="py-20 bg-zinc-900">
+            <div class="container mx-auto px-4 text-center">
+                <h3 class="font-bebas text-4xl mb-12 text-yellow-300 glitch-effect">WATCH NOW</h3>
+                <div class="aspect-w-16 aspect-h-9 mb-8">
+                    <iframe class="w-full h-[600px]" src="https://www.youtube.com/embed/qtRKdVHc-cE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="inline-flex flex-wrap justify-center gap-4 font-mono text-sm">
+                    <a href="https://archive.org/details/fight-club_202006" class="bg-yellow-300 text-black px-6 py-2 hover:bg-yellow-400 transition-colors">
+                        WATCH ONLINE
+                    </a>
+                    <a href="https://play.google.com/store/movies/details/Fight_Club?id=9cEvmTznQ4Q.P&hl=en&pli=1" class="border border-yellow-300 text-yellow-300 px-6 py-2 hover:bg-yellow-300 hover:text-black transition-colors">
+                        BUY NOW
+                    </a>
+                </div>
+            </div>
+        </section>
+          <section id="join" class="py-20 bg-zinc-900">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto text-center">
+                <h3 class="font-bebas text-4xl mb-6 text-yellow-300 glitch-effect">JOIN PROJECT MAYHEM</h3>
+                <p class="font-mono text-gray-400 mb-8">You are not your job. You are not the money in your bank account. You are not your khakis.</p>
+                <form class="space-y-4">
+                    <div class="max-w-md mx-auto">
+                        <input type="email" placeholder="YOUR EMAIL" class="join-input font-mono text-center">
+                    </div>
+                    <button type="submit" class="bg-yellow-300 text-black font-fira px-8 py-3 hover:bg-yellow-400 transition-colors transform hover:scale-105">
+                        I UNDERSTAND
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+        <footer class="py-12 border-t border-zinc-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col items-center space-y-8">
+                <div class="flex space-x-8">
+                    <a href="https://www.facebook.com/FightClub/" class="social-icon font-mono text-sm text-yellow-300 hover:text-white transition-colors">FACEBOOK</a>
+                    <a href="https://www.instagram.com/tylers_speech" class="social-icon font-mono text-sm text-yellow-300 hover:text-white transition-colors">INSTAGRAM</a>
+                </div>
+                <p class="font-mono text-sm text-gray-500 text-center">
+                    &copy; 1999 Fight Club. All rights reserved.<br>
+                    <span class="block mt-2 text-yellow-300">YOU ARE NOT YOUR F*CKING KHAKIS</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+    </main>
+ <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono&family=Fira+Sans+Condensed:wght@700&display=swap');
+        body {
+            cursor: none;
+        }
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #facc15;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .custom-cursor.hover {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(250, 204, 21, 0.1);
+        }
+
+        .menu-overlay {
+            clip-path: circle(0% at top right);
+            transition: clip-path 0.5s ease-in-out;
+        }
+
+        .menu-overlay.active {
+            clip-path: circle(150% at top right);
+        }
+
+                .join-input {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #facc15;
+            color: white;
+            padding: 10px 0;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .join-input:focus {
+            outline: none;
+            border-bottom-color: white;
+        }
+        .social-icon {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-icon::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #facc15;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon:hover::after {
+            transform: translateX(0);
+        }
+    </style>
+        <div id="mobileMenu" class="menu-overlay fixed inset-0 bg-black bg-opacity-95 z-50 hidden">
+        <div class="container mx-auto px-4 py-20">
+            <button id="closeMenu" class="absolute top-6 right-6 text-yellow-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <nav class="flex flex-col space-y-8">
+                <a href="#rules" class="font-bebas text-4xl text-yellow-300 hover:text-white transition-colors">RULES</a>
+                <a href="#cast" class="font-bebas text-4xl text-yellow-300 hover:text-white transition-colors">CAST</a>
+                <a href="#watch" class="font-bebas text-4xl text-yellow-300 hover:text-white transition-colors">WATCH</a>
+                <a href="#join" class="font-bebas text-4xl text-yellow-300 hover:text-white transition-colors">JOIN US</a>
+            </nav>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+   
+    <body class="bg-black text-white grain-overlay">
+    <div class="custom-cursor hidden lg:block"></div>
+    <script>
+        // Custom cursor
+        const cursor = document.querySelector('.custom-cursor');
+        const links = document.querySelectorAll('a, button');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+            link.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+        const menuButton = document.querySelector('button.lg\\:hidden');
+        const closeButton = document.querySelector('#closeMenu');
+        const mobileMenu = document.querySelector('#mobileMenu');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => {
+                mobileMenu.classList.add('active');
+            }, 10);
+        });
+
+        closeButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 500);
+        });
+    </script>
+</body>
+</head>
+
+</html>
